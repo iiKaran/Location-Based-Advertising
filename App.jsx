@@ -1,15 +1,21 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import NavBar from './Components/NavBar'
-import Intro from './Components/Intro'
-import OptionContainer from './Components/OptionContainer'
-export default function App() {
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Button, Text, View} from 'react-native';
+import Home from './Screens/Home';
+import MyAds from './Screens/MyAds';
+const Stack = createNativeStackNavigator();
+
+export default App = () => {
   return (
-    <View  className='flex-1 bg-bgLessDark text-textLight'>
-      <NavBar></NavBar>
-      <Intro></Intro>
-      <OptionContainer></OptionContainer>
-      {/* <Text className=' lowercase opacity-30 text-textLight text-[12px]  absolute bottom-0 left-[30%]'>Copyright@karrshan44@gmail.com</Text> */}
-    </View>
-  )
-}
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center',headerTitle: `New World of Ad's`,  headerTintColor: '#F1F2EC',headerStyle:{height:0, fontSize: 29,backgroundColor: '#25252C',}}}>
+        <Stack.Screen
+        name='Home'
+          component={Home}
+        />
+        <Stack.Screen name="ads" component={MyAds} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
