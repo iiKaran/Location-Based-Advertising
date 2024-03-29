@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import InputModal from './InputModal';
+import { setInputModal } from '../Redux/Slices/HomeSlice';
+import {useSelector,useDispatch} from 'react-redux'
 
 const PlusButtonModal = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  function close()
-  {
-    setModalVisible(false);
-  }
+  const {inputOpen,}= useSelector((state)=>state.home); 
+  const dispatch = useDispatch();
   return (
     <View  className='absolute p-4 top-2 right-5'>
-      <Modal
+   { inputOpen &&   <Modal
         animationType="slide"
-        visible={modalVisible}
-        onRequestClose={close}
+        onRequestClose={()=>{
+          dispatch(setInputModal(false))
+        }}
       >
-        <InputModal closeFxn = {close}></InputModal>
-      </Modal>
+        <InputModal></InputModal>
+      </Modal>}
       <TouchableOpacity
-        onPress={() => setModalVisible(true)}
+        onPress={() => dispatch(setInputModal(true))}
         className="!bg-bgPrimary rounded-lg"
       >
         <Text className='p-3 rounded-lg text-textLight'>Create New</Text>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput,Text,Button ,ScrollView, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {useSelector,useDispatch} from 'react-redux'
+import { setInputModal } from '../Redux/Slices/HomeSlice';
 const InputModal = ({closeFxn}) => {
     const navigation = useNavigation();
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const InputModal = ({closeFxn}) => {
     // Handle form submission, e.g., send data to server
     console.log(formData);
   };
-
+  const dispatch = useDispatch();
   return (
     <ScrollView className='p-4 bg-bgLessDark'>
       <Text className='mb-12 text-xl font-semibold text-center text-textLight'>Add New Advertisement</Text>
@@ -63,7 +65,7 @@ const InputModal = ({closeFxn}) => {
         <Text className='p-4 text-center text-textLight'>Submit</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=>{
-        closeFxn()
+        dispatch(setInputModal(false));
       }} className='mb-[400px] rounded-md bg-[#efebeb46]  ' >
         <Text className='p-4 text-center text-white'>Cancel</Text>
       </TouchableOpacity>
