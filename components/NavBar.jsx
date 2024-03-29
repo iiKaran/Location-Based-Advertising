@@ -4,7 +4,7 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const url =
   'https://img.freepik.com/premium-photo/marketing-ads_886668-1.jpg?w=1060';
-export default function NavBar() {
+export default function NavBar({state}) {
   const [status, setStatus] = useState(false);
   return (
     <View className="flex pt-7 pb-5 flex-row justify-between px-7 items-center pr-4 w-[100%] bg-bgLessDark ">
@@ -14,11 +14,11 @@ export default function NavBar() {
     </View> */}
       <View className="flex flex-row items-center gap-2 ">
         {/* <Image source={{uri: url}} style={{width: 30, height: 30}}  className='rounded-md '/> */}
-        <Text className="font-[800] capitalize text-gray-400 text-[24px] font-mono">
+        <Text className={ `font-[800] capitalize text-gray-400 text-[24px] font-mono ${state==false?'text-center':''}` }>
           Ad-verse
         </Text>
       </View>
-      <View className='flex items-center gap-2'>
+     { <View className='flex items-center gap-2'>
         <ToggleSwitch
           isOn={status}
           onColor="#FA7629"
@@ -32,7 +32,7 @@ export default function NavBar() {
             status ? "Online" : "Offline"
           }
         </Text>
-      </View>
+      </View>}
     </View>
   );
 }
