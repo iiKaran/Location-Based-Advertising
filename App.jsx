@@ -19,8 +19,8 @@ export default App = () => {
             headerTintColor: '#F1F2EC',
             headerStyle: {height: 0, fontSize: 29, backgroundColor: '#25252C'},
           }}>
-          <Stack.Screen name="userHome" component={UserHome} />
-          {/* <Stack.Screen name="Home" component={Home} /> */}
+          {/* <Stack.Screen name="userHome" component={UserHome} /> */}
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="ads" component={MyAds} />
         </Stack.Navigator>
       </NavigationContainer>
