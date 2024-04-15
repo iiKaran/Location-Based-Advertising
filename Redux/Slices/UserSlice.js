@@ -1,5 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { getData } from '../../Helper';
+async function getUser()
+{
+  const data = await AsyncStorage.getItem("info");
+  console.log("the data is ", data); 
+  return data ;
+}
 const initialState = {
+  info:getUser()?._j,
   latestAds: [
     {
       id: '1',
@@ -24,9 +34,13 @@ export const userSlice = createSlice({
     addToAdds: (state, action) => {
       state.latestAds = [...state.latestAds, action.payload];
     },
+    updateUser: (state, action) => {
+      state.info = action.payload
+      AsyncStorage.setItem("info", JSON.stringify(action.payload))
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {addToAdds} = userSlice.actions;
+export const {addToAdds, updateUser} = userSlice.actions;
 export default userSlice.reducer;

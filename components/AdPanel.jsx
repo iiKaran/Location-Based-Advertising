@@ -36,8 +36,8 @@ export default function AdPanel() {
         data={ads}
         renderItem={example}
         keyExtractor={item => item.id}
-        horizontal={false}
-        numColumns={numColumns}
+        horizontal={true}
+        // numColumns={numColumns}
         ItemSeparatorComponent={() => <View style={{width: 10}} />} // Change the height as needed
       />
     </SafeAreaView>

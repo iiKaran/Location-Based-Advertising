@@ -63,7 +63,8 @@ export const homeSlice = createSlice({
     },
     setViewData:(state , action)=>{
         state.viewData  = action.payload
-    }
+    },
+    
   },
 })
 
