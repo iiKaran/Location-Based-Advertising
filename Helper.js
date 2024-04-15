@@ -23,3 +23,13 @@ export const getData = async (key)=>{
      return null ; 
     }
  }
+
+// Remove a key from AsyncStorage
+export const removeKey = async (key) => {
+  try {
+    await AsyncStorage.removeItem(key);
+    console.log(`Key "${key}" removed from AsyncStorage`);
+  } catch (error) {
+    console.error('Error removing key from AsyncStorage:', error);
+  }
+};

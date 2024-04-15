@@ -1,15 +1,14 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { getData } from '../../Helper';
-async function getUser()
-{
-  const data = await AsyncStorage.getItem("info");
-  console.log("the data is ", data); 
-  return data ;
+// Function to fetch user info from AsyncStorage
+async function getUser() {
+  const data = await AsyncStorage.getItem('info');
+  return data ? JSON.parse(data) : null;
 }
+// Define an initial state without directly calling `getUser`
 const initialState = {
-  info:getUser()?._j,
+  info: null, // Set to null initially
   latestAds: [
     {
       id: '1',
@@ -27,6 +26,7 @@ const initialState = {
   status: false,
 };
 
+// Create the slice
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -35,12 +35,24 @@ export const userSlice = createSlice({
       state.latestAds = [...state.latestAds, action.payload];
     },
     updateUser: (state, action) => {
-      state.info = action.payload
-      AsyncStorage.setItem("info", JSON.stringify(action.payload))
-    }
+      state.info = action.payload;
+      AsyncStorage.setItem('info', JSON.stringify(action.payload));
+    },
+    // Add a reducer to handle setting user info fetched from AsyncStorage
+    setUserFromStorage: (state, action) => {
+      state.info = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {addToAdds, updateUser} = userSlice.actions;
+export const { addToAdds, updateUser, setUserFromStorage } = userSlice.actions;
+
+// Export an async thunk to fetch user info from AsyncStorage and set it in the store
+export const fetchUserFromStorage = () => async (dispatch) => {
+  const userInfo = await getUser();
+  dispatch(setUserFromStorage(userInfo));
+};
+
+// Export the reducer
 export default userSlice.reducer;

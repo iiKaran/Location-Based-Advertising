@@ -1,13 +1,26 @@
-import { View, Text, ScrollView ,StyleSheet} from 'react-native'
+import { View, Text, ScrollView ,StyleSheet, Touchable} from 'react-native'
 import React from 'react'
 import UserAdCard from '../Components/UserAdCard'
-import {useSelector} from 'react-redux';
-export default function UserHome() {
+import {useSelector, useDispatch} from 'react-redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { setUserFromStorage } from '../Redux/Slices/UserSlice';
+import { removeKey } from '../Helper';
+export default function UserHome({navigation}) {
 const {latestAds} = useSelector((state)=>state.user)
+const dispatch = useDispatch();
   
   return (
     <View className="bg-bgLessDark text-textLight ">
-      <Text className='w-[50%] mx-auto pb-3 text-center opacity-75 font-[600] text-xl text-textLight mt-8 border-b-2 border-b-bgPrimary mb-8'>Latest Offers For You</Text>
+      <View className='flex flex-row justify-between gap-4 px-5 mt-4 mb-8 '>
+      <Text className='pb-3 text-center opacity-75 font-[600] text-xl text-textLight  border-b-2 border-b-bgPrimary '>Latest Offers For You</Text>
+        <Text className='p-3 text-xl text-center rounded-md text-textLight bg-bgPrimary'  onPress={()=>{
+        dispatch(setUserFromStorage(null));
+        removeKey("info");
+        navigation.navigate("Home"); 
+      }}>
+          Log Out
+        </Text>
+      </View>
     <ScrollView contentContainerStyle={styles.container}>
       <UserAdCard data={latestAds[0]}> </UserAdCard>
       <UserAdCard data={latestAds[0]}> </UserAdCard>

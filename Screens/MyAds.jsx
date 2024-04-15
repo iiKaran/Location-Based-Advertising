@@ -27,7 +27,7 @@ function OptionText({title}) {
   );
 }
 
-export default function MyAds() {
+export default function MyAds({navigation}) {
   const {ads, viewData, InputOpen} = useSelector(state => state.home);
   return (
     // <InputModal></InputModal>
@@ -39,7 +39,7 @@ export default function MyAds() {
         <OptionText title="Expired"></OptionText>
         {/* expired add panel */}
         <AdPanel></AdPanel>
-        <PlusButtonModal></PlusButtonModal>
+        <PlusButtonModal navigation={navigation}></PlusButtonModal>
         {viewData && <ViewModal data={viewData}></ViewModal>}
       </ScrollView>
     </View>

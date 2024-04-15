@@ -6,10 +6,15 @@ import Home from './Screens/Home';
 import {store} from './Redux';
 import {Provider} from 'react-redux';
 import MyAds from './Screens/MyAds';
+import { fetchUserFromStorage } from './Redux/Slices/UserSlice';
 import UserHome from './Screens/UserHome';
 import {Login, Signup} from './Screens/Login'
 const Stack = createNativeStackNavigator();
 export default App = () => {
+  useEffect(() => {
+    // Dispatch fetchUserFromStorage thunk when the component mounts
+    store.dispatch(fetchUserFromStorage());
+  }, []);
   return (
     <Provider store={store}>
       <NavigationContainer>

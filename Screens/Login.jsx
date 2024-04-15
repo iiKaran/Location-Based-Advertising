@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
 import axios from 'axios';
 import { apiConnector } from '../Services/ApiConnecter';
@@ -56,6 +56,18 @@ const Login = ({navigation}) => {
 
 
 const Signup = ({ navigation }) => {
+  const {info}= useSelector((state)=>state.user)
+  useEffect(() => {
+    if(info)
+    {
+      if(info.type === 'user'){
+        navigation.navigate('userHome')
+       }
+       else{
+        navigation.navigate('ads')
+       }
+      }
+  },[])
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -67,7 +79,7 @@ const Signup = ({ navigation }) => {
   const handleVerifyEmail = async () => {
     try {
       // Call your API to send OTP to the email
-      console.log("the email is ", email,endpoints.SENDOTP_API)
+      // console.log("the email is ", email,endpoints.SENDOTP_API)
       const response = await apiConnector('POST', endpoints.SENDOTP_API, { email });
       setVerified(true);
       Alert.alert('Verification email sent!');
@@ -78,8 +90,7 @@ const Signup = ({ navigation }) => {
   const handleSignup = async () => {
     try {
       const response = await apiConnector("POST",endpoints.SIGNUP_API,{name,email,password,otp,accountType});
-      console.log(response.data);
-
+      // console.log(response.data);
       if(response.data.success){
         Alert.alert('Signup successful!');
         navigation.navigate('login');
