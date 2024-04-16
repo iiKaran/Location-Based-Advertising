@@ -3,10 +3,14 @@ import { View, TextInput,Text,Button ,ScrollView, TouchableOpacity} from 'react-
 import { useNavigation } from '@react-navigation/native';
 import {useSelector,useDispatch} from 'react-redux'
 import { setInputModal } from '../Redux/Slices/HomeSlice';
+import { apiConnector } from '../Services/ApiConnecter';
+import { endpoints } from '../Services/api';
 const InputModal = ({closeFxn}) => {
     const navigation = useNavigation();
+    const {info}= useSelector((state)=>state.user);
+
   const [formData, setFormData] = useState({
-    id: '4',
+    id: '',
     title: '',
     description: '',
     name: '',
@@ -21,9 +25,32 @@ const InputModal = ({closeFxn}) => {
     setFormData({ ...formData, [key]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Handle form submission, e.g., send data to server
+    console.log(info)
+    formData.by= info?._id
     console.log(formData);
+    try{
+      const response = await apiConnector('POST', endpoints.ADD_AD_API, formData);
+      console.log("the response", response?.data)
+      if(response?.data?.success){
+        setFormData({
+          id: '',
+          title: '',
+          description: '',
+          name: '',
+          place: '',
+          image: '',
+          date: '',
+          validTill: '',
+          status: true,
+        })
+      }
+    }
+    catch(err){
+      console.log("Some thing went wrong while adding ad",err); 
+      return ; 
+    }
   };
   const dispatch = useDispatch();
   return (

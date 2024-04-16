@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {setViewData} from '../Redux/Slices/HomeSlice';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Ad from './Ad';
 
 function example({item, data}) {
@@ -27,6 +27,9 @@ function setView(data) {
   dispatch(setViewData());
 }
 export default function AdPanel() {
+  useEffect(() => {
+    
+  },[])
   const {ads} = useSelector(state => state.home);
   const [numColumns, setNumColumns] = useState(2);
   const dispatch = useDispatch();
