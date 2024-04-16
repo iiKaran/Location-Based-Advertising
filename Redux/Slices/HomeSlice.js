@@ -64,10 +64,13 @@ export const homeSlice = createSlice({
     setViewData:(state , action)=>{
         state.viewData  = action.payload
     },
+   setAdsData: (state, action) => {
+      state.ads = action.payload
+    }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToItem, setInputModal , setViewData } = homeSlice.actions
+export const { addToItem, setInputModal , setViewData,setAdsData } = homeSlice.actions
 export default homeSlice.reducer

@@ -9,11 +9,15 @@ import {
   Modal,
   Image,
   SafeAreaView,
+  Alert
 
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {setViewData} from '../Redux/Slices/HomeSlice';
-import {useEffect, useState} from 'react';
+import React,{useEffect, useState} from 'react';
+import { setAdsData } from '../Redux/Slices/HomeSlice';
+import { apiConnector } from '../Services/ApiConnecter';
+import { endpoints } from '../Services/api';
 import Ad from './Ad';
 
 function example({item, data}) {
@@ -23,22 +27,42 @@ function example({item, data}) {
     </View>
   );
 }
-function setView(data) {
-  dispatch(setViewData());
-}
+
 export default function AdPanel() {
-  useEffect(() => {
-    
-  },[])
   const {ads} = useSelector(state => state.home);
   const [numColumns, setNumColumns] = useState(2);
   const dispatch = useDispatch();
+  const {info}= useSelector((state)=>state.user);
+
+  function setView(data) {
+    dispatch(setViewData());
+  }
+  useEffect(() => {
+    async function FetchAndPopulateAds(){
+      try{
+        const id = info?._id;
+        const response = await apiConnector('POST', endpoints.GET_ALL_ADS_API,{id});
+
+        console.log("THe ads by the user are ", response?.data?.data)
+        dispatch(setAdsData(response?.data?.data));
+
+        
+      }
+      catch(err){
+        Alert.alert("Something went wrong");
+        console.log("Error while getting ads", err); 
+        return ; 
+      }
+    }
+    FetchAndPopulateAds();
+  },[])
+
   return (
     <SafeAreaView className="px-3 py-3">
       <FlatList
         data={ads}
         renderItem={example}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item._id}
         horizontal={true}
         // numColumns={numColumns}
         ItemSeparatorComponent={() => <View style={{width: 10}} />} // Change the height as needed

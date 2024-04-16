@@ -7,5 +7,5 @@ export const endpoints = {
   LOGIN_API: BASE_URL + "/login",
   ADD_AD_API: BASE_URL + "/createAd",
   DELETE_AD_API: BASE_URL + "/deleteAd",
-  GET_ALL_AD_API: BASE_URL + "/getAllAds",
+  GET_ALL_ADS_API: BASE_URL + "/getAllAds",
 }
