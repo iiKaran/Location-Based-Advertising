@@ -10,7 +10,7 @@ import { apiConnector } from '../Services/ApiConnecter';
 import { addToUserAds } from '../Redux/Slices/HomeSlice';
 import { endpoints } from '../Services/api';
 import io from 'socket.io-client';
-const SERVER_URL = 'http://192.168.29.233:4000';
+const SERVER_URL = 'https://adverse-backend.onrender.com';
 function example({ item }) {
   return (
     <View className='relative w-full'>

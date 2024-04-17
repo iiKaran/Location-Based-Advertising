@@ -5,10 +5,12 @@ import {useSelector,useDispatch} from 'react-redux'
 import { setInputModal } from '../Redux/Slices/HomeSlice';
 import { apiConnector } from '../Services/ApiConnecter';
 import { endpoints } from '../Services/api';
+import { addToUserAds } from '../Redux/Slices/HomeSlice';
 import io from 'socket.io-client';
 
-const SERVER_URL = 'http://192.168.29.233:4000';
+const SERVER_URL = 'https://adverse-backend.onrender.com';
 const InputModal = ({closeFxn}) => {
+  // const dispatch = useDispatch(); 
     const navigation = useNavigation();
     const {info}= useSelector((state)=>state.user);
 
@@ -34,6 +36,7 @@ const InputModal = ({closeFxn}) => {
     formData.by= info?._id
     console.log(formData);
     try{
+      dispatch(addToUserAds(formData));
       socket.emit('newAdvertisement', formData);
       const response = await apiConnector('POST', endpoints.ADD_AD_API, formData);
       console.log("the response", response?.data)

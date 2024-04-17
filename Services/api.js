@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.29.233:4000/api/v1"
+const BASE_URL = "https://adverse-backend.onrender.com/api/v1"
 
 // AUTH ENDPOINTS
 export const endpoints = {
