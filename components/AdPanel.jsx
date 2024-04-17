@@ -29,6 +29,9 @@ function example({item, data}) {
 }
 
 export default function AdPanel() {
+  useEffect(()=>{
+    
+  },[])
   const {ads} = useSelector(state => state.home);
   const [numColumns, setNumColumns] = useState(2);
   const dispatch = useDispatch();
@@ -43,14 +46,14 @@ export default function AdPanel() {
         const id = info?._id;
         const response = await apiConnector('POST', endpoints.GET_ALL_ADS_API,{id});
 
-        console.log("THe ads by the user are ", response?.data?.data)
+        // console.log("THe ads by the user are ", response?.data?.data)
         dispatch(setAdsData(response?.data?.data));
 
         
       }
       catch(err){
         Alert.alert("Something went wrong");
-        console.log("Error while getting ads", err); 
+        // console.log("Error while getting ads", err); 
         return ; 
       }
     }
@@ -63,8 +66,8 @@ export default function AdPanel() {
         data={ads}
         renderItem={example}
         keyExtractor={item => item._id}
-        horizontal={true}
-        // numColumns={numColumns}
+        // horizontal={true}
+        numColumns={numColumns}
         ItemSeparatorComponent={() => <View style={{width: 10}} />} // Change the height as needed
       />
     </SafeAreaView>

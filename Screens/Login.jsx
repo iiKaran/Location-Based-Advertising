@@ -42,7 +42,7 @@ const Login = ({navigation}) => {
 
   return (
     <View className="items-center justify-center flex-1 bg-bgLessDark">
-      <Text className="text-textLight font-[600] w-[90%] py-4  text-center ml-2 text-2xl mt-8 capitalize pl-3">
+      <Text className="text-textLight font-[600] w-[90%] py-4  text-center ml-2 text-2xl mt-8  pl-3">
         Login Page
       </Text>
 
@@ -53,7 +53,7 @@ const Login = ({navigation}) => {
         <TextInput
           value={name}
           onChangeText={setName}
-          className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+          className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
         />
         <Text className="w-[100%] px-4 mb-0 text-textLight font-bold opacity-9 ">
           Enter Your Password Below:
@@ -63,7 +63,7 @@ const Login = ({navigation}) => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
-          className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+          className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
         />
       </View>
       <TouchableOpacity
@@ -139,7 +139,7 @@ const Signup = ({navigation}) => {
 
   return (
     <View className="items-center justify-center flex-1 bg-bgLessDark">
-      <Text className="text-textLight font-[600] w-[90%] py-4  text-center ml-2 text-2xl mt-8 capitalize pl-3">
+      <Text className="text-textLight font-[600] w-[90%] py-4  text-center ml-2 text-2xl mt-8  pl-3">
         Sign Up Page
       </Text>
       {!verified ? (
@@ -154,7 +154,7 @@ const Signup = ({navigation}) => {
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
-              className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+              className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
             />
             <TouchableOpacity
               className="w-[90%] mx-auto mt-0 rounded-full py-2"
@@ -174,7 +174,7 @@ const Signup = ({navigation}) => {
             placeholder="Name"
             value={name}
             onChangeText={setName}
-            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
           />
           <Text className="w-[100%] px-4 mb-0 text-textLight font-bold opacity-9 ">
             Enter Your Password Below:
@@ -184,7 +184,7 @@ const Signup = ({navigation}) => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
           />
           <Text className="w-[100%] px-4 mb-0 text-textLight font-bold opacity-9 ">
             Enter the recieved OTP Below:
@@ -193,7 +193,7 @@ const Signup = ({navigation}) => {
             placeholder="OTP"
             value={otp}
             onChangeText={setOtp}
-            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6 capitalize border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
+            className="px-4 placeholder:text-slate-400 mt-0 py-1 w-[100%] mb-6  border-b-2 rounded-lg border-b-white focus:border-bgPrimary border-opacity-5 opacity-70 text-textLight"
           />
           <Text className='w-[100%] px-4 mb-0 text-textLight font-bold opacity-9 '>Choose the AccountType:</Text>
        <View className='border-b-2 border-b-bgPrimary mb-4 w-[100%] font-bold'> 

@@ -32,16 +32,16 @@ export default function MyAds({navigation}) {
   return (
     // <InputModal></InputModal>
     <View>
-      <ScrollView className="max-h-[100vh] py-13 overflow-y-scroll bg-bgLessDark text-textLight">
+      <View className="min-h-[100vh] py-13 overflow-y-scroll flex flex-1  bg-bgLessDark text-textLight">
         <OptionText title="On the Air"></OptionText>
         {/* // live ad pannel  */}
         <AdPanel></AdPanel>
-        <OptionText title="Expired"></OptionText>
+        {/* <OptionText title="Expired"></OptionText> */}
         {/* expired add panel */}
-        <AdPanel></AdPanel>
+        {/* <AdPanel></AdPanel> */}
         <PlusButtonModal navigation={navigation}></PlusButtonModal>
         {viewData && <ViewModal data={viewData}></ViewModal>}
-      </ScrollView>
+      </View>
     </View>
   );
 }

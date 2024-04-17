@@ -13,6 +13,13 @@ import {useSelector, useDispatch} from 'react-redux';
 import { setViewData } from '../Redux/Slices/HomeSlice';
 export default function Example({item,data}){
  const dispatch = useDispatch(); 
+ function formatDate(d) {
+  const date = new Date(d);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  return `${day}/${month}/${year}`;
+ }
   return (
     <View style={styles.container} className="a opacity-90">
       <View style={styles.content} className="">
@@ -25,7 +32,7 @@ export default function Example({item,data}){
         style={styles.dateContainer}
         className="fixed bottom-0 left-0 items-center justify-between gap-4 p-2 ">
         <Text style={styles.date} className="text-sm">
-          {item.date}
+          {formatDate(item.validTill)}
         </Text>
         <TouchableOpacity
           onPress={() => {

@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.46.148:4000/api/v1"
+const BASE_URL = "http://192.168.29.233:4000/api/v1"
 
 // AUTH ENDPOINTS
 export const endpoints = {
@@ -7,5 +7,6 @@ export const endpoints = {
   LOGIN_API: BASE_URL + "/login",
   ADD_AD_API: BASE_URL + "/createAd",
   DELETE_AD_API: BASE_URL + "/deleteAd",
-  GET_ALL_ADS_API: BASE_URL + "/getAllAds",
+  GET_ALL_ADS_API: BASE_URL + "/getAllAdsByUser",
+  GET_ADS : BASE_URL+"/getAds"
 }

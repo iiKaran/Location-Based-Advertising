@@ -13,7 +13,11 @@ import {
 } from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
 import { setViewData } from '../Redux/Slices/HomeSlice';
+import { useEffect } from 'react';
 export default function Viewer() {
+  useEffect(()=>{
+    //  console.log("the viewwqwwwwwww dara iissss s" ,)
+  },[])
   const dispatch = useDispatch();
   const {viewData} = useSelector(state => state.home);
     return (
@@ -36,7 +40,7 @@ export default function Viewer() {
               by :
             </Text>
             <Text className=" text-[19px] capitalize opacity-75 text-textLight font-[300]">
-              {viewData.name}
+              {viewData?.place}
             </Text>
           </View>
           <View className="flex flex-row gap-2 mt-6 align-center">
@@ -52,7 +56,7 @@ export default function Viewer() {
               Image :
             </Text>
             <View>
-              {/* <Image source={{uri: ""}} style={{width: '100%', height: 300}} /> */}
+            <Image source={{ uri: viewData?.image }} style={{width: '100%', height: 300}}></Image>
             </View>
           </View>
           <View className="flex flex-row gap-2 mt-6 align-center">
