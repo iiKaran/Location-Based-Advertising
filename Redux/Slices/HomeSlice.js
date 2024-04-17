@@ -13,7 +13,7 @@ export const homeSlice = createSlice({
       state.ads = [...state.ads, action.payload]
     },
     addToUserAds: (state, action) => {
-      state.userAds = [...state.ads, action.payload]
+      state.userAds = [...state.userAds, action.payload]
     },
     setInputModal: (state, action) => {
        state.inputOpen= action.payload

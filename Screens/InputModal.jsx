@@ -5,6 +5,9 @@ import {useSelector,useDispatch} from 'react-redux'
 import { setInputModal } from '../Redux/Slices/HomeSlice';
 import { apiConnector } from '../Services/ApiConnecter';
 import { endpoints } from '../Services/api';
+import io from 'socket.io-client';
+
+const SERVER_URL = 'http://192.168.29.233:4000';
 const InputModal = ({closeFxn}) => {
     const navigation = useNavigation();
     const {info}= useSelector((state)=>state.user);
@@ -31,6 +34,7 @@ const InputModal = ({closeFxn}) => {
     formData.by= info?._id
     console.log(formData);
     try{
+      socket.emit('newAdvertisement', formData);
       const response = await apiConnector('POST', endpoints.ADD_AD_API, formData);
       console.log("the response", response?.data)
       if(response?.data?.success){
@@ -53,6 +57,7 @@ const InputModal = ({closeFxn}) => {
     }
   };
   const dispatch = useDispatch();
+  const socket = io(SERVER_URL);
   return (
     <ScrollView className='p-4 bg-bgLessDark'>
       <Text className='mb-12 text-xl font-semibold text-center text-textLight'>Add New Advertisement</Text>

@@ -7,8 +7,10 @@ import { setUserFromStorage } from '../Redux/Slices/UserSlice';
 import { setUserAdsData } from '../Redux/Slices/HomeSlice';
 import { removeKey } from '../Helper';
 import { apiConnector } from '../Services/ApiConnecter';
+import { addToUserAds } from '../Redux/Slices/HomeSlice';
 import { endpoints } from '../Services/api';
-
+import io from 'socket.io-client';
+const SERVER_URL = 'http://192.168.29.233:4000';
 function example({ item }) {
   return (
     <View className='relative w-full'>
@@ -32,6 +34,21 @@ export default function UserHome({ navigation }) {
       }
     }
     fetchData();
+
+    const socket = io(SERVER_URL);
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('newAdvertisement', (advertisement) => {
+      console.log("the advertisement", advertisement)
+      dispatch(addToUserAds(advertisement));
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   return (
