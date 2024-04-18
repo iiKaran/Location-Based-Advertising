@@ -6,6 +6,7 @@ import {
   Button,
   Alert,
   TouchableOpacity,
+  
 } from 'react-native';
 import axios from 'axios';
 import {apiConnector} from '../Services/ApiConnecter';
@@ -14,7 +15,7 @@ import {endpoints} from '../Services/api';
 import {useSelector, useDispatch} from 'react-redux';
 import {Picker} from '@react-native-picker/picker';
 
-const API_URL = 'https://your-api-url.com';
+// const API_URL = 'https://your-api-url.com';
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -35,6 +36,15 @@ const Login = ({navigation}) => {
         navigation.navigate('ads');
       }
     } catch (error) {
+      if (error.response.status === 400) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('Please Fill the credentials correctly');
+      }
+      if (error.response.status === 404) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('Wrong Email or Password !!');
+      }
+      
       // Handle error
       console.error(error);
     }
@@ -111,10 +121,26 @@ const Signup = ({navigation}) => {
       const response = await apiConnector('POST', endpoints.SENDOTP_API, {
         email,
       });
+      // console.log("the response is ", response)
+      if (response.data.success) {
       setVerified(true);
       Alert.alert('Verification email sent!');
+      }
     } catch (error) {
-      console.error(error);
+      if (error.response.status === 400) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('Something Went Wrong !!');
+      }
+      if (error.response.status === 404) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('No Email Entered');
+        return ;
+      }
+      if (error.response.status === 401) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('User Exists Already !!');
+      }
+      // console.error(error);
     }
   };
   const handleSignup = async () => {
@@ -133,6 +159,14 @@ const Signup = ({navigation}) => {
       }
     } catch (error) {
       // Handle error
+      if (error.response.status === 400) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('Check the Parameters Again !!');
+      }
+      if (error.response.status === 404) {
+        // Show an alert or perform any other action for a 400 status code
+        Alert.alert('User With Same Email Exists Already !!');
+      }
       console.error(error);
     }
   };
